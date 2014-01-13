@@ -1231,7 +1231,12 @@ void LogMessage::RecordCrashReason(
 #endif
 }
 
-static void logging_fail() {
+#ifdef HAVE___ATTRIBUTE__
+static void logging_fail() __attribute__((noreturn));
+#endif
+
+static void logging_fail()
+{
 #if defined(_DEBUG) && defined(_MSC_VER)
   // When debugging on windows, avoid the obnoxious dialog and make
   // it possible to continue past a LOG(FATAL) in the debugger
@@ -1248,7 +1253,11 @@ void (*g_logging_fail_func)() __attribute__((noreturn)) = &logging_fail;
 GOOGLE_GLOG_DLL_DECL void (*g_logging_fail_func)() = &logging_fail;
 #endif
 
+#ifdef HAVE___ATTRIBUTE__
+void InstallFailureFunction(void (*fail_func)() __attribute__((noreturn))) {
+#else
 void InstallFailureFunction(void (*fail_func)()) {
+#endif
   g_logging_fail_func = fail_func;
 }
 

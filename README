@@ -59,6 +59,11 @@ Instead do this:
  $ make test
  $ ...
 
+OSX 10.8 build, in the cmake step use these options
+
+ $ cmake -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DCMAKE_CXX_FLAGS=-ftemplate-depth-1024 ../src/
+
+
 Problems
 --------
 

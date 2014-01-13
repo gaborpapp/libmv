@@ -44,6 +44,14 @@
 
 #include "ui/tvr/main_window.h"
 
+#ifndef __APPLE__
+#include "GL/gl.h"
+#include "GL/glu.h"
+#else
+#include "OpenGL/gl.h"
+#include "OpenGL/glu.h"
+#endif
+
 using namespace libmv;
 
 TvrMainWindow::TvrMainWindow(QWidget *parent)

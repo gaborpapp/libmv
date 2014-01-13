@@ -23,6 +23,14 @@
 #include <QtGui>
 #include <QtOpenGL>
 
+#ifndef __APPLE__
+#include "GL/gl.h"
+#include "GL/glu.h"
+#else
+#include "OpenGL/gl.h"
+#include "OpenGL/glu.h"
+#endif
+
 using namespace libmv::scene;
 
 void SceneCamera::Draw() {

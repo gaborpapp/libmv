@@ -82,7 +82,7 @@ void USURFDescriptor(const TImage &integral_image,
                  HarrY(integral_image, sample_row, sample_col, int_scale);
           dxy *= weight;
           components.head<2>() += dxy;
-          components.tail<2>() += dxy.array().abs();
+          components.tail<2>() += Vec2f( dxy.array().abs() );
         }
       }
       (*descriptor).segment<4>(done_dims) = components;
